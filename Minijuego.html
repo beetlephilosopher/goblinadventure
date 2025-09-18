@@ -11,21 +11,46 @@
     <img src="logo.png" alt="Logo del juego" id="logo">
     <h1>Minijuego</h1>
     <div id="modes">
-      <button id="easyMode" onclick="redirectTo('minijuego1.html')">Modo Fácil</button>
-      <button id="hardMode" onclick="redirectTo('minijuego2.html')">
-        Modo Difícil 
-      </button>
+      <button id="easyMode" onclick="redirectTo('./minijuego1.html')">Modo Fácil</button>
+      <button id="hardMode" onclick="redirectTo('./minijuego2.html')">Modo Difícil</button>
     </div>
   </div>
 
+  <!-- Sonido de botón -->
+  <audio id="buttonSound">
+    <source src="musica/menu.mp3" type="audio/mp3">
+  </audio>
+
   <script>
-    /**
-     * Redirige al usuario a la página especificada
-     * @param {string} url - URL de la página a redirigir
-     */
-    function redirectTo(url) {
-      window.location.href = url;
+    const buttonSound = document.getElementById('buttonSound');
+
+    // Cargar configuración de volumen desde localStorage
+    function cargarConfiguracion() {
+      const volumeSound = parseInt(localStorage.getItem('volumeSound') || 50, 10);
+      buttonSound.volume = volumeSound / 100;
     }
+
+    // Reproducir sonido de botón
+    function playButtonSound() {
+      buttonSound.currentTime = 0;
+      buttonSound.play().catch(err => console.log("Error al reproducir buttonSound:", err));
+    }
+
+    // Redirigir con sonido
+    function redirectTo(url) {
+      playButtonSound();
+      setTimeout(() => {
+        window.location.href = url;
+      }, 150); // pequeño retraso para que se escuche el sonido
+    }
+
+    // Inicializar
+    window.onload = function () {
+      cargarConfiguracion();
+      document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', playButtonSound);
+      });
+    };
   </script>
 </body>
 </html>

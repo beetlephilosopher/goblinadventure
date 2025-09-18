@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuarios</title>
-    <link rel="stylesheet" href="/reguser.css">
+    <link rel="stylesheet" href="reguser.css">
 </head>
 <body>
     <div class="container">
@@ -32,7 +32,24 @@
         </form>
     </div>
 
+    <!-- Sonido de botón -->
+    <audio id="buttonSound">
+        <source src="musica/menu.mp3" type="audio/mp3">
+    </audio>
+
     <script>
+        const buttonSound = document.getElementById('buttonSound');
+
+        function cargarConfiguracion() {
+            const volumeSound = parseInt(localStorage.getItem('volumeSound') || 50, 10);
+            buttonSound.volume = volumeSound / 100;
+        }
+
+        function playButtonSound() {
+            buttonSound.currentTime = 0;
+            buttonSound.play().catch(err => console.log("Error al reproducir buttonSound:", err));
+        }
+
         const form = document.getElementById('registerForm');
 
         form.addEventListener('submit', (e) => {
@@ -45,11 +62,16 @@
             // Guardar en localStorage
             localStorage.setItem('player1', player1);
             localStorage.setItem('player2', player2);
-            localStorage.setItem('speedrun', speedrun); // Guardar estado del modo Speedrun
+            localStorage.setItem('speedrun', speedrun);
 
             // Redirigir al juego
-            window.location.href = 'juego.html';
+            playButtonSound();
+            setTimeout(() => {
+                window.location.href = './juego.html';
+            }, 150);
         });
+
+        window.onload = cargarConfiguracion;
     </script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú de Videojuego</title>
+  <link rel="stylesheet" href="Menu.css">
+</head>
+<body>
+  <div id="menu">
+    <img src="logo.png" alt="Logo del juego" id="logo">
+    <div id="botones">
+      <button id="btnJugar" class="boton-dinamico">Jugar</button>
+      <button id="btnMinijuego" class="boton-dinamico">Minijuego</button>
+      <button id="btnPuntuacion" class="boton-dinamico">Puntuación</button>
+      <button id="btnInstrucciones" class="boton-dinamico">Instrucciones</button>
+    </div>
+  </div>
+
+  
+
+  <script>
+    
+
+    // Inicializar configuración
+    window.onload = function () {
+      cargarConfiguracion();
+
+      // Asignar eventos a los botones
+      document.querySelectorAll('.boton-dinamico').forEach(button => {
+        button.addEventListener('click', playButtonSound);
+      });
+
+      // Asignar funcionalidad de navegación
+      document.getElementById('btnJugar').addEventListener('click', () => {
+        window.location.href = 'reguser.html'; // Redirige a reguser.html
+      });
+      document.getElementById('btnMinijuego').addEventListener('click', () => {
+        window.location.href = 'Minijuego.html'; // Redirige a Minijuego.html
+      });
+      document.getElementById('btnPuntuacion').addEventListener('click', () => {
+        window.location.href = 'Puntuacion.html'; // Redirige a la ventana de puntuación
+      });
+      document.getElementById('btnInstrucciones').addEventListener('click', () => {
+        window.location.href = 'Instrucciones.html'; // Redirige a la ventana de instrucciones
+      });
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="/reguser.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Registrar Jugadores</h1>
+            <p>¡Introduce los nombres para empezar a jugar!</p>
+        </div>
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="player1">Nombre del Jugador 1:</label>
+                <input type="text" id="player1" placeholder="Jugador 1" required>
+            </div>
+            <div class="input-group">
+                <label for="player2">Nombre del Jugador 2:</label>
+                <input type="text" id="player2" placeholder="Jugador 2" required>
+            </div>
+            <div class="input-group">
+                <label for="speedrun">
+                    <input type="checkbox" id="speedrun"> Activar modo Speedrun
+                </label>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn btn-play">Guardar y Jugar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const player1 = document.getElementById('player1').value || 'Jugador 1';
+            const player2 = document.getElementById('player2').value || 'Jugador 2';
+            const speedrun = document.getElementById('speedrun').checked;
+
+            // Guardar en localStorage
+            localStorage.setItem('player1', player1);
+            localStorage.setItem('player2', player2);
+            localStorage.setItem('speedrun', speedrun); // Guardar estado del modo Speedrun
+
+            // Redirigir al juego
+            window.location.href = 'juego.html';
+        });
+    </script>
+</body>
+</html>

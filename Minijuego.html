@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minijuego</title>
+  <link rel="stylesheet" href="Minijuego.css">
+</head>
+<body>
+  <div id="menu">
+    <img src="logo.png" alt="Logo del juego" id="logo">
+    <h1>Minijuego</h1>
+    <div id="modes">
+      <button id="easyMode" onclick="redirectTo('minijuego1.html')">Modo Fácil</button>
+      <button id="hardMode" onclick="redirectTo('minijuego2.html')">
+        Modo Difícil 
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Redirige al usuario a la página especificada
+     * @param {string} url - URL de la página a redirigir
+     */
+    function redirectTo(url) {
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>

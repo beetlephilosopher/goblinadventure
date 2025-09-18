@@ -17,7 +17,7 @@
     </div>
   </div>
 
-   <!-- Sonido de botón -->
+
   <audio id="buttonSound">
     <source src="musica/menu.mp3" type="audio/mp3">
   </audio>
@@ -25,41 +25,39 @@
   <script>
     const buttonSound = document.getElementById('buttonSound');
 
-    // Cargar configuración desde localStorage
     function cargarConfiguracion() {
       const volumeSound = parseInt(localStorage.getItem('volumeSound') || 50, 10);
       buttonSound.volume = volumeSound / 100;
     }
 
-    // Reproducir sonido de botón
+
     function playButtonSound() {
       buttonSound.currentTime = 0;
       buttonSound.play().catch(error => console.log('Error al reproducir buttonSound:', error));
     }
 
-    // Inicializar configuración
+
     window.onload = function () {
       cargarConfiguracion();
       const volumeSound = parseInt(localStorage.getItem('volumeSound') || 50, 10);
       buttonSound.volume = volumeSound / 100;
     }
 
-    // Reproducir sonido de botón
+
     function playButtonSound() {
       buttonSound.currentTime = 0;
       buttonSound.play().catch(err => console.log('Error al reproducir buttonSound:', err));
     }
 
-    // Inicializar configuración
+
     window.onload = function () {
       cargarConfiguracion();
 
-      // Asignar eventos a los botones
       document.querySelectorAll('.boton-dinamico').forEach(button => {
         button.addEventListener('click', playButtonSound);
       });
 
-      // Asignar funcionalidad de navegación (rutas relativas)
+   
       document.getElementById('btnJugar').addEventListener('click', () => {
         window.location.href = './reguser.html';
       });

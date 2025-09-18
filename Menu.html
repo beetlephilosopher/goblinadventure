@@ -17,10 +17,25 @@
     </div>
   </div>
 
-  
+  <!-- Sonido de botón -->
+  <audio id="buttonSound">
+    <source src="musica/menu.mp3" type="audio/mp3">
+  </audio>
 
   <script>
-    
+    const buttonSound = document.getElementById('buttonSound');
+
+    // Cargar configuración desde localStorage
+    function cargarConfiguracion() {
+      const volumeSound = parseInt(localStorage.getItem('volumeSound') || 50, 10);
+      buttonSound.volume = volumeSound / 100;
+    }
+
+    // Reproducir sonido de botón
+    function playButtonSound() {
+      buttonSound.currentTime = 0;
+      buttonSound.play().catch(err => console.log('Error al reproducir buttonSound:', err));
+    }
 
     // Inicializar configuración
     window.onload = function () {
@@ -31,18 +46,18 @@
         button.addEventListener('click', playButtonSound);
       });
 
-      // Asignar funcionalidad de navegación
+      // Asignar funcionalidad de navegación (rutas relativas)
       document.getElementById('btnJugar').addEventListener('click', () => {
-        window.location.href = 'reguser.html'; // Redirige a reguser.html
+        window.location.href = './reguser.html';
       });
       document.getElementById('btnMinijuego').addEventListener('click', () => {
-        window.location.href = 'Minijuego.html'; // Redirige a Minijuego.html
+        window.location.href = './Minijuego.html';
       });
       document.getElementById('btnPuntuacion').addEventListener('click', () => {
-        window.location.href = 'Puntuacion.html'; // Redirige a la ventana de puntuación
+        window.location.href = './Puntuacion.html';
       });
       document.getElementById('btnInstrucciones').addEventListener('click', () => {
-        window.location.href = 'Instrucciones.html'; // Redirige a la ventana de instrucciones
+        window.location.href = './Instrucciones.html';
       });
     };
   </script>
